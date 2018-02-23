@@ -13,6 +13,75 @@ var Stamen_TonerLite = L.tileLayer('http://stamen-tiles-{s}.a.ssl.fastly.net/ton
   ext: 'png'
 }).addTo(map);
 
+
+//task 1
+//use # for ID
+$("#text-label1").text("Name");
+$("#text-label2").text("School");
+$("#text-label3").text("Major");
+$("#number-label").text("Age");
+$("#checkbox-label1").text("Is Graduate Student");
+$("#checkbox-label2").text("Is International Student");
+$("#color-label").text("Eye Color");
+
+//task 2
+$("#text-input1").val("Xiao");
+$("#text-input2").val("Design");
+$("#text-input3").val("MUSA");
+$("#numeric-input").val('24');
+$("#cbox-input1").prop( "checked", true );
+$("#cbox-input2").prop( "checked", true );
+$("#color-input").val("#ffffff");
+
+//task 3
+var object = {
+Name:$("#text-input1").val(),
+School:$("#text-input2").val(),
+Major:$("#text-input3").val(),
+Age:$("#numeric-input").val(),
+IsGraduateStudent:$("#cbox-input1").val(),
+IsInternationalStudent:$("#cbox-input2").val(),
+Color:$("#color-input").val()
+};
+
+//Task 4: Enable user interaction with the form
+$("#text-input1").prop('disabled', false);
+$("#text-input2").prop('disabled', false);
+$("#text-input3").prop('disabled', false);
+$("#numeric-input").prop('disabled', false);
+$("#cbox-input1").prop('disabled', false);
+$("#cbox-input2").prop('disabled', false);
+$("#color-input").prop('disabled', false);
+
+//Task 5: Add a button trigger to log this form's object to console
+$( "#target" ).click(function() {
+  console.log({Name:$("#text-input1").val(),
+  School:$("#text-input2").val(),
+  Major:$("#text-input3").val(),
+  Age:$("#numeric-input").val(),
+  IsGraduateStudent:$("#cbox-input1").val(),
+  IsInternationalStudent:$("#cbox-input2").val(),
+  Color:$("#color-input").val()
+  });
+});
+
+//Task 6: Add a circle marker
+$("#text-label2").text("Location Latitude");
+$("#text-input2").attr('type', 'number');
+$("#text-label3").text("Location Longitude");
+$("#text-input3").attr('type', 'number');
+$("#number-label").text("Location Description");
+$("#numeric-input").attr('type', 'text');
+$("#color-label").text("Marker Color");
+
+$( "#target" ).click(function() {
+  var layer = L.circleMarker(
+  [$("#text-input2").val(), $("#text-input3").val()],
+  {radius:200,color:$("#color-input").val()}).addTo(map).bindPopup($("#numeric-input").val());
+layer.addTo(map);
+});
+
+
 /* =====================
   Lab - jQuery
 
@@ -77,6 +146,8 @@ var Stamen_TonerLite = L.tileLayer('http://stamen-tiles-{s}.a.ssl.fastly.net/ton
 
 
   Task 1: Using javascript, change the HTML to create useful labels for our UI
+
+
     *NOTE*: Do not edit part1-jquery.html. You should be able to change the text of an HTML element
             with jQuery alone! Try this: $(<selector>).text('text to set');
 
